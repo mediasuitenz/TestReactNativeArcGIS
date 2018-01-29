@@ -1,0 +1,7 @@
+{
+  "name": "TestReactNativeArcGIS",
+  "displayName": "Test React Native ArcGIS",
+  "expo": {
+    "sdkVersion": "25.0.0"
+  }
+}
