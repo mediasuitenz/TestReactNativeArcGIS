@@ -11,8 +11,18 @@ import com.facebook.react.uimanager.ThemedReactContext;
 
 import com.facebook.react.uimanager.annotations.ReactProp;
 
+import com.esri.arcgisruntime.mapping.view.MapView;
+import com.esri.arcgisruntime.mapping.ArcGISMap;
+import com.esri.arcgisruntime.mapping.Basemap;
+
 public class ArcGISBridgeManager extends SimpleViewManager<View> {
     public static final String REACT_CLASS = "ArcGISBridge";
+    private MapView mMapView;
+    private ArcGISBridgeModule arcGISBridgeModule;
+
+    public ArcGISBridgeManager(ArcGISBridgeModule arcGISBridgeModule) {
+        this.arcGISBridgeModule = arcGISBridgeModule;
+    }
 
     @Override
     public String getName() {
@@ -24,9 +34,11 @@ public class ArcGISBridgeManager extends SimpleViewManager<View> {
     @Override
     public View createViewInstance(ThemedReactContext context){
         Log.v(REACT_CLASS, "create view instance");
-        // Create a view here
-        // https://facebook.github.io/react-native/docs/native-components-android.html#2-implement-method-createviewinstance
-        return new View(context);
+        mMapView = new MapView(context);
+        ArcGISMap map = new ArcGISMap(Basemap.Type.TOPOGRAPHIC, 34.056295, -117.195800, 16);
+        mMapView.setMap(map);
+        arcGISBridgeModule.setMapView(mMapView);
+        return mMapView;
     }
 
     @ReactProp(name = "exampleProp")

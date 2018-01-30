@@ -25,3 +25,8 @@ Next steps were to add to MainApplication.java which doesn't exist, seems I have
 Once ejected, had to re-do `new module`.
 
 Tweaked the JS and Java a lot to get it to work...
+
+Added entries to 2 `build.gradle` files according to https://developers.arcgis.com/android/latest/guide/develop-your-first-map-app.htm
+
+Been running directly on my phone with `react-native run-android`
+Where `react-native` is from node_modules ("react-native": "0.52.0")

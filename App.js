@@ -34,6 +34,9 @@ const styles = StyleSheet.create({
   },
   map: {
     flex: 1,
+    backgroundColor: '#8F8',
+    height: '100%',
+    width: '100%',
   },
   button: {
   }

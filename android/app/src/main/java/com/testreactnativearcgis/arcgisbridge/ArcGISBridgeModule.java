@@ -14,10 +14,12 @@ import com.facebook.react.modules.core.DeviceEventManagerModule;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.esri.arcgisruntime.mapping.view.MapView;
+
 public class ArcGISBridgeModule extends ReactContextBaseJavaModule {
     public static final String REACT_CLASS = "ArcGISBridge";
     private static ReactApplicationContext reactContext = null;
-    private String exampleProp = "";
+    private MapView mMapView;
 
     public ArcGISBridgeModule(ReactApplicationContext context) {
         // Pass in the context to the constructor and save it so you can emit events
@@ -26,6 +28,10 @@ public class ArcGISBridgeModule extends ReactContextBaseJavaModule {
         Log.v(REACT_CLASS, "construct bridge module");
 
         reactContext = context;
+    }
+
+    public void setMapView(MapView mMapView) {
+        this.mMapView = mMapView;
     }
 
     @Override

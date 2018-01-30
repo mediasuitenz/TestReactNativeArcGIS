@@ -15,6 +15,9 @@ import java.util.Collections;
 import java.util.List;
 
 public class ArcGISBridgePackage implements ReactPackage {
+
+    private ArcGISBridgeModule arcGISBridgeModule;
+
     @Override
     public List<NativeModule> createNativeModules(ReactApplicationContext reactContext) {
       // Register your native module
@@ -23,7 +26,7 @@ public class ArcGISBridgePackage implements ReactPackage {
       //     new ArcGISBridgeModule(reactContext)
       // );
       List<NativeModule> modules = new ArrayList<>();
-      modules.add(new ArcGISBridgeModule(reactContext));
+      modules.add(arcGISBridgeModule);
       return modules;
     }
 
@@ -35,9 +38,10 @@ public class ArcGISBridgePackage implements ReactPackage {
     @Override
     public List<ViewManager> createViewManagers(ReactApplicationContext reactContext) {
         // Register your native component's view manager
-        // https://facebook.github.io/react-native/docs/native-components-android.html#4-register-the-viewmanager
+        arcGISBridgeModule = new ArcGISBridgeModule(reactContext);
+
         return Arrays.<ViewManager>asList(
-            new ArcGISBridgeManager()
+            new ArcGISBridgeManager(arcGISBridgeModule)
         );
     }
 }

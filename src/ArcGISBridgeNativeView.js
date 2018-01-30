@@ -1,7 +1,7 @@
 //  Created by react-native-create-bridge
 
 import React, { Component } from 'react'
-import { requireNativeComponent, NativeModules, View, PropTypes } from 'react-native'
+import { requireNativeComponent, NativeModules, View, PropTypes, StyleSheet } from 'react-native'
 
 // const ArcGISBridge = requireNativeComponent('ArcGISBridge', ArcGISBridgeNativeView)
 
@@ -47,7 +47,16 @@ export default class ArcGISBridgeNativeView extends Component {
   }
   render() {
     return (
-      <ArcGISBridge {...this.props} />
+      <ArcGISBridge {...this.props} style={styles.map} />
     );
   }
 }
+
+const styles = StyleSheet.create({
+  map: {
+    flex: 1,
+    backgroundColor: '#F88',
+    height: '100%',
+    width: '100%',
+  },
+});
