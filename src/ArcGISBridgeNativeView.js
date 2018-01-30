@@ -1,7 +1,8 @@
 //  Created by react-native-create-bridge
 
 import React, { Component } from 'react'
-import { requireNativeComponent, NativeModules, View, PropTypes, StyleSheet } from 'react-native'
+import { requireNativeComponent, View, PropTypes, StyleSheet, DeviceEventEmitter } from 'react-native'
+import ArcGISBridgeModule from './ArcGISBridgeNativeModule'
 
 // const ArcGISBridge = requireNativeComponent('ArcGISBridge', ArcGISBridgeNativeView)
 
@@ -42,8 +43,14 @@ var ArcGISBridge = requireNativeComponent('ArcGISBridge', {
 })
 
 export default class ArcGISBridgeNativeView extends Component {
-  viewZoomIn () {
-    NativeModules.ArcGISBridge.bridgeZoomIn();
+  componentWillMount () {
+    this.addListenerOn(DeviceEventEmitter, 'onMapTap', this.onMapTap);
+  }
+  onMapTap () {
+    console.log('------------------------------------- MAP TAPPED', arguments)
+  }
+  addMarkers () {
+    ArcGISBridgeModule.bridgeAddMarker();
   }
   render() {
     return (

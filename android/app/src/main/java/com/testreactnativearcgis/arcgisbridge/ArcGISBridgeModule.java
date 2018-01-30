@@ -4,9 +4,12 @@ package com.testreactnativearcgis.arcgisbridge;
 
 import android.support.annotation.Nullable;
 import android.util.Log;
+import android.view.MotionEvent;
 
+import com.facebook.react.bridge.Arguments;
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
+import com.facebook.react.bridge.ReactContext;
 import com.facebook.react.bridge.ReactMethod;
 import com.facebook.react.bridge.WritableMap;
 import com.facebook.react.modules.core.DeviceEventManagerModule;
@@ -32,6 +35,7 @@ public class ArcGISBridgeModule extends ReactContextBaseJavaModule {
 
     public void setMapView(MapView mMapView) {
         this.mMapView = mMapView;
+        mMapView.setOnTouchListener(new ArcGISBridgeMapViewOnTouchListener(reactContext, mMapView, this));
     }
 
     @Override
@@ -60,8 +64,8 @@ public class ArcGISBridgeModule extends ReactContextBaseJavaModule {
     }
 
     @ReactMethod
-    public void bridgeZoomIn() {
-        Log.v(REACT_CLASS, "bridge zoom in");
+    public void bridgeAddMarker(float x, float y) {
+        Log.v(REACT_CLASS, "bridge add marker");
 
     }
 
@@ -70,5 +74,17 @@ public class ArcGISBridgeModule extends ReactContextBaseJavaModule {
         // A method for emitting from the native side to JS
         // https://facebook.github.io/react-native/docs/native-modules-android.html#sending-events-to-javascript
         reactContext.getJSModule(DeviceEventManagerModule.RCTDeviceEventEmitter.class).emit(eventName, eventData);
+    }
+
+    public void onTap(MotionEvent e) {
+        Log.v(REACT_CLASS, "on tap!");
+        WritableMap event = Arguments.createMap();
+        event.putDouble("x", e.getX());
+        event.putDouble("y", e.getY());
+
+        ReactContext reactContext = (ReactContext) mMapView.getContext();
+        reactContext
+                .getJSModule(DeviceEventManagerModule.RCTDeviceEventEmitter.class)
+                .emit("onMapTap", event);
     }
 }

@@ -3,8 +3,8 @@ import { StyleSheet, Text, View, Button } from 'react-native';
 import ArcGISBridgeView from './src/ArcGISBridgeNativeView'
 
 export default class App extends React.Component {
-  onZoomIn () {
-    this.refs.map.viewZoomIn();
+  onAddMarkers () {
+    this.refs.map.addMarkers();
   }
 
   render() {
@@ -17,8 +17,8 @@ export default class App extends React.Component {
         />
         <Button
           style={styles.button}
-          onPress={() => { this.onZoomIn() }}
-          title="Zoom in?"
+          onPress={() => { this.onAddMarkers() }}
+          title="Add markers"
         />
       </View>
     );
@@ -28,7 +28,7 @@ export default class App extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#88F',
     alignItems: 'center',
     justifyContent: 'center',
   },

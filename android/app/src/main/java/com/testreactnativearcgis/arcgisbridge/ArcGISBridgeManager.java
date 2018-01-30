@@ -2,7 +2,6 @@
 
 package com.testreactnativearcgis.arcgisbridge;
 
-import android.view.View;
 import android.support.annotation.Nullable;
 import android.util.Log;
 
@@ -15,7 +14,7 @@ import com.esri.arcgisruntime.mapping.view.MapView;
 import com.esri.arcgisruntime.mapping.ArcGISMap;
 import com.esri.arcgisruntime.mapping.Basemap;
 
-public class ArcGISBridgeManager extends SimpleViewManager<View> {
+public class ArcGISBridgeManager extends SimpleViewManager<MapView> {
     public static final String REACT_CLASS = "ArcGISBridge";
     private MapView mMapView;
     private ArcGISBridgeModule arcGISBridgeModule;
@@ -32,7 +31,7 @@ public class ArcGISBridgeManager extends SimpleViewManager<View> {
     }
 
     @Override
-    public View createViewInstance(ThemedReactContext context){
+    public MapView createViewInstance(ThemedReactContext context){
         Log.v(REACT_CLASS, "create view instance");
         mMapView = new MapView(context);
         ArcGISMap map = new ArcGISMap(Basemap.Type.TOPOGRAPHIC, 34.056295, -117.195800, 16);
@@ -42,7 +41,7 @@ public class ArcGISBridgeManager extends SimpleViewManager<View> {
     }
 
     @ReactProp(name = "exampleProp")
-    public void setExampleProp(View view, @Nullable String exampleProp) {
+    public void setExampleProp(MapView view, @Nullable String exampleProp) {
         Log.v(REACT_CLASS, "set example prop:");
         Log.v(REACT_CLASS, exampleProp);
         // Set properties from React onto your native component via a setter method
