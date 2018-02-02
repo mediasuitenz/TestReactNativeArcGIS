@@ -4,7 +4,7 @@
 
 The hope was that [react-native-create-bridge](https://github.com/peggyrayzis/react-native-create-bridge) would magically wrap the SDK and we could call whatever we need straight from JavaScript. In reality we still need to write a Java layer in between. Even then, it will not be possible/simple to have a 1:1 API, because of the different language paradigms. The ArcGIS Java SDK requires creating/passing in classes (e.g. DefaultMapViewOnTouchListener) and doing conversions from map data classes to simple types to pass back in events.
 
-It would still be possible to use this set up if we wanted to write all of the mapping stuff in Java, and just expose the few actions and events that we need to the React Native wrapping app.
+It would still be possible to use this set up if we wanted to write all of the mapping stuff in Java, and just expose the few actions and events that we need to the React Native wrapping app. For Media Suite to pursue this would require a large investment in time and effort into learning/using the Android and the ArcGIS Java SDKs. We would also likely face most of the challenges raised by this other investigation - https://github.com/glazou/react-native-arcgis-sdk-demo
 
 ## Notes on what I did to get this running
 
